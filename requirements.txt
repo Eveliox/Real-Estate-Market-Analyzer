@@ -1,0 +1,53 @@
+# ============================================================================
+# Real Estate Market Analyzer - Python dependencies
+# ----------------------------------------------------------------------------
+# Pinned to upper-bound MAJOR versions only. We let pip pick the latest patch.
+# Re-pin tightly (==X.Y.Z) once you have a working baseline you want to lock.
+# ============================================================================
+
+# --- Core data stack ---
+pandas>=2.2,<3.0           # DataFrames: think Excel for Python, but scriptable
+numpy>=1.26,<3.0           # Numerical arrays, the bedrock under pandas
+scipy>=1.11,<2.0           # Statistics & scientific functions
+
+# --- Machine learning ---
+scikit-learn>=1.4,<2.0     # The standard ML toolkit (regression, splits, CV)
+xgboost>=2.0,<4.0          # Gradient-boosted trees, a competition workhorse
+joblib>=1.3,<2.0           # Save/load fitted models to disk
+
+# --- Time-series forecasting ---
+# Prophet can be a pain on Windows + Python 3.13. statsmodels is the safe fallback.
+# We will try Prophet in Phase 5; if the install fails, statsmodels covers us.
+statsmodels>=0.14,<1.0     # ARIMA/SARIMA and classical stats models
+# prophet>=1.1,<2.0        # <-- uncomment in Phase 5 if it installs cleanly
+
+# --- Visualization ---
+matplotlib>=3.8,<4.0       # The OG plotting library (used everywhere)
+seaborn>=0.13,<1.0         # Pretty statistical plots, sits on top of matplotlib
+plotly>=5.20,<7.0          # Interactive charts (great for HTML reports)
+
+# --- Notebooks & exploration ---
+# VS Code's Jupyter extension ships its own UI - it only needs `ipykernel`
+# in the venv. We deliberately skip `jupyter`, `jupyterlab`, AND `ipywidgets`
+# because all three drop deeply-nested JS assets under .venv\share\jupyter\
+# whose paths exceed Windows' 260-char limit on this machine.
+# Re-enable later by (a) moving the project to a short path like C:\dev\,
+# or (b) running this in an elevated PowerShell:
+#   New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" `
+#     -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
+ipykernel>=6.29,<7.0       # Lets Jupyter (and VS Code) find this venv's Python
+
+# --- Geo helpers (Phase 7 - heatmap prep) ---
+# Optional now; uncomment if you want lat/lon utilities pre-installed.
+# geopy>=2.4,<3.0
+# folium>=0.16,<1.0
+
+# --- Interpretability (Phase 6) ---
+# shap>=0.45,<1.0          # <-- uncomment in Phase 6
+
+# --- Networking / data fetch ---
+requests>=2.31,<3.0        # HTTP requests (we use it to auto-download data)
+tqdm>=4.66,<5.0            # Progress bars for long-running loops/downloads
+
+# --- Dev / quality of life ---
+python-dotenv>=1.0,<2.0    # Optional: load .env files for config
