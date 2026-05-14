@@ -43,7 +43,7 @@ ipykernel>=6.29,<7.0       # Lets Jupyter (and VS Code) find this venv's Python
 # folium>=0.16,<1.0
 
 # --- Interpretability (Phase 6) ---
-# shap>=0.45,<1.0          # <-- uncomment in Phase 6
+shap>=0.45,<1.0            # SHAP model explanations (Phase 6)
 
 # --- Networking / data fetch ---
 requests>=2.31,<3.0        # HTTP requests (we use it to auto-download data)
